@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HANDY - Головна</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    
+    
+    
+    
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-container">
+                <div class="logo">HANDY</div>
+            <nav class="header-nav">
+                    <ul class="header-menu">
+                        <li><a class= "link" href="/index.html">Головна</a></li>
+                        <li><a class= "link" href="eventList.html">Події</a></li>
+                        <li><a class= "link" href="about-us.html">Про нас</a></li>
+                        <li><a class= "link" href="instruction.html">Інструкція з використання</a></li>
+                    </ul>
+                </nav>
+                <div class="auth">
+                    <a class= "link" href="login.html" id="login-btn"  >Увійти</a> | <a class= "link" href="/register-form.html" id="register-btn">Зареєструватись</a> 
+                    <a class="link" id="logout-btn" href="#" style="display: none;">Вихід</a>
+                    <a class= "link" href="userProfile.html" id="profile-btn" style="display: none;" >Профіль </a>
+                </div>
+            </div>
+        </div>
+    </header>
+   
+    <body>
+        <section class="hero">
+            <div class="container">
+                <h1>HANDY</h1>
+            <p>Долучайся. Допомагай. Змінюй!</p>
+            <button class="button modal-btn-open" id="modal-btn-open" style="display:none;" type="button">Додати подію</button>
+
+            <div class="backdrop is-hidden">
+                <div class="modal">
+                    <button class="modal-btn-close" type="button">
+                        <img src="images/close.png" alt="Закрити">
+                    </button>
+                    <h2>Додати подію</h2>
+                   <form id="event-form">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="title">Назва</label>
+                    <input type="text" id="title" name="title" placeholder="Введіть назву події" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="category">Категорія</label>
+                    <select id="category" name="category" required>
+                        <option value="">Оберіть категорію</option>
+                        <option value="donate">Донат</option>
+                        <option value="ecology">Екологія</option>
+                        <option value="military">Військове</option>
+                        <option value="help">Допомога</option>
+                        <option value="education">Освіта</option>
+                        <option value="medicine">Медицина</option>
+                        <option value="community">Громадська діяльність</option>
+                        <option value="social">Соціальні ініціативи</option>
+                        <option value="emergency">Надзвичайні ситуації</option>
+                        <option value="mental-health">Психологічна підтримка</option>
+                        <option value="reconstruction">Відновлення інфраструктури</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="city">Місто, район</label>
+                    <input type="text" id="city" name="city" placeholder="Наприклад, Львів, Личаківський" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Вулиця, будинок</label>
+                    <input type="text" id="address" name="address" placeholder="Наприклад, вул. Чупринки, 110" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="start_date">Дата початку</label>
+                    <input type="date" id="start_date" name="start_date" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="end_date">Дата завершення</label>
+                    <input type="date" id="end_date" name="end_date" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="start_time">Час початку</label>
+                    <input type="time" id="start_time" name="start_time" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="end_time">Час завершення</label>
+                    <input type="time" id="end_time" name="end_time" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Номер телефону</label>
+                    <input type="tel" id="phone" name="phone" placeholder="+380" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" placeholder="example@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="people_needed">Кількість людей</label>
+                    <input type="number" id="people_needed" name="people_needed" min="1" required>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="description">Опис</label>
+                    <textarea id="description" name="description" placeholder="Опишіть подію" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Додати фото</label>
+                    <input type="file" id="photo" name="photo" accept="image/*">
+                </div>
+
+                <button type="submit" class="submit-btn button">Опублікувати</button>
+            </div>
+        </form>
+                </div>
+            </div>
+            </div>
+        </section>
+
+        <section class="platform-possibilities">
+            <div class="container">
+                <h2 class="hero-h2">ЩО МОЖЕ ПЛАТФОРМА?</h2>
+            <div class="cards-container">
+                <div class="card">
+                    <img class="card-foto" src="/images/cart2.avif" alt="Корисне про допомогу під час війни">
+                    <h3>Корисне про допомогу під час війни</h3>
+                    <p>Читайте корисні поради про волонтерство та допомогу в часи війни</p>
+                </div>
+                <div class="card">
+                    <img class="card-foto" src="images/cart1.jpg" alt="Всі волонтерські можливості в одному місці">
+                    <h3>Всі волонтерські можливості в одному місці</h3>
+                    <p>Знаходьте можливості у своєму місті чи онлайн, реєструйтесь та починайте творити добро.</p>
+                </div>
+                <div class="card">
+                    <img class="card-foto" src="/images/cart3.jpg" alt="Станьте частиною великої справи">
+                    <h3>Станьте частиною великої справи</h3>
+                    <p>Обирайте проєкти, що відповідають вашим навичкам та інтересам, і робіть свій внесок у важливі ініціативи.</p>
+                </div>
+                <div class="card">
+                    <img class="card-foto" src="/images/cart4.webp" alt="Об’єднуємо тих, хто хоче допомагати">
+                    <h3>Об’єднуємо тих, хто хоче допомагати</h3>
+                    <p>Знаходьте актуальні волонтерські можливості та долучайтеся до змін у вашій спільноті чи онлайн.</p>
+                </div>
+            </div>
+            </div>
+        </section>
+        
+
+        <section class="cta container">
+            <div class="container">
+                <h2 class="hero-h2">Шукаєте волонтерів для вашої ініціативи?</h2>
+            <p>Створюйте особистий кабінет організації, публікуйте можливості та знаходьте волонтерів для підсилення команди всього за кілька кроків.</p>
+            <button class="cta-button" onclick="window.location.href='/register-form.html';">Створити кабінет →</button>
+            </div>
+        </section>
+
+
+        <div class="container">
+            <h1 class="faq-h1">Питання та Відповіді</h1>
+            <div class="faq">
+                <div class="faq-menu">
+                    <button class="faq-btn active" data-target="volunteers-faq">Для волонтерів</button>
+                    <button class="faq-btn" data-target="general-faq">Загальні питання</button>
+                </div>
+                <div class="faq-list">
+                    <div id="volunteers-faq" class="faq-section active">
+                        <div class="faq-item">
+                            <div class="faq-question">Чи потрібно реєструватись на Платформі, якщо я хочу волонтерити?</div>
+                            <div class="faq-answer">Якщо ви хочете долучитись до волонтерського руху, вам не обов'язково реєструватись на Платформі. Достатньо натиснути "Подати заявку", щоб отримати доступ до можливостей.</div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">Чи можу я додавати волонтерські можливості від себе?</div>
+                            <div class="faq-answer">Так, ви можете додавати можливості, якщо вони відповідають нашим критеріям.</div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">Чи повинен мати особливі навички та вміння?</div>
+                            <div class="faq-answer">Не обов'язково, але наявність навичок може бути корисною.</div>
+                        </div>
+                    </div>
+        
+                    <div id="general-faq" class="faq-section">
+                        <div class="faq-item">
+                            <div class="faq-question">Що таке платформа і для чого вона потрібна?</div>
+                            <div class="faq-answer">Платформа допомагає волонтерам знаходити можливості для допомоги.</div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">Як зв’язатися з технічною підтримкою?</div>
+                            <div class="faq-answer">Ви можете написати нам на електронну пошту або через форму зворотного зв’язку.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            document.querySelectorAll('.faq-item').forEach(item => {
+        item.addEventListener('click', () => {
+        item.classList.toggle('open');
+        });
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+    const buttons = document.querySelectorAll(".faq-btn");
+    const sections = document.querySelectorAll(".faq-section");
+
+    buttons.forEach(button => {
+        button.addEventListener("click", function () {
+            // Видаляємо клас active у всіх кнопок
+            buttons.forEach(btn => btn.classList.remove("active"));
+            this.classList.add("active");
+
+            // Приховуємо всі секції
+            sections.forEach(section => section.classList.remove("active"));
+
+            // Відображаємо вибрану секцію
+            const targetId = this.getAttribute("data-target");
+            document.getElementById(targetId).classList.add("active");
+        });
+    });
+});
+
+const modal = document.querySelector('.backdrop');
+const modalBtnOpen = document.querySelector('.modal-btn-open');
+const modalBtnClose = document.querySelector('.modal-btn-close');
+
+const toggleModal = () => modal.classList.toggle('is-hidden');
+
+modalBtnOpen.addEventListener('click', toggleModal);
+modalBtnClose.addEventListener('click', toggleModal);
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const modal = document.querySelector(".backdrop");
+    const openModalBtn = document.querySelector(".modal-btn-open");
+    const closeModalBtn = document.querySelector(".modal-btn-close");
+    const form = document.getElementById("modal-event-form");
+
+    // Відкриття модального вікна
+    openModalBtn.addEventListener("click", () => {
+        modal.classList.remove("hidden");
+    });
+
+    // Закриття модального вікна
+    closeModalBtn.addEventListener("click", () => {
+        modal.classList.add("hidden");
+    });
+
+    // Закриття при кліку за межами модального вікна
+    modal.addEventListener("click", (event) => {
+        if (event.target === modal) {
+            modal.classList.add("hidden");
+        }
+    });
+
+    // Відправка форми
+    form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        let formData = new FormData(form);
+        let photo = document.getElementById("photo").files[0];
+
+        if (photo) {
+            formData.append("image", photo);
+        }
+
+        try {
+            let response = await fetch("https://newhandy-4b950124bf06.herokuapp.com/create-event/", {
+                method: "POST",
+                body: formData,
+                headers: {
+                    "Authorization": "Bearer " + localStorage.getItem("access_token")
+                }
+            });
+
+            let result = await response.json();
+            if (response.ok) {
+                alert("Подію успішно створено!");
+                form.reset();
+                modal.classList.add("hidden");
+            } else {
+                alert("Помилка: " + JSON.stringify(result));
+            }
+        } catch (error) {
+            console.error("Помилка при відправці:", error);
+        }
+    });
+});
+document.getElementById("event-form").addEventListener("submit", async function(event) {
+            event.preventDefault();
+            
+            let formData = new FormData();
+            formData.append("title", document.getElementById("title").value);
+            formData.append("category", document.getElementById("category").value);
+            formData.append("start_date", document.getElementById("start_date").value);
+            formData.append("end_date", document.getElementById("end_date").value);
+            formData.append("start_time", document.getElementById("start_time").value);
+            formData.append("end_time", document.getElementById("end_time").value);
+            formData.append("location_short", document.getElementById("city").value);
+            formData.append("location_full", document.getElementById("address").value);
+            formData.append("phone_number", document.getElementById("phone").value);
+            formData.append("email", document.getElementById("email").value);
+            formData.append("people_needed", document.getElementById("people_needed").value);
+            formData.append("description", document.getElementById("description").value);
+            
+            let photo = document.getElementById("photo").files[0];
+            if (photo) {
+                formData.append("image", photo);
+            }
+
+            try {
+                let response = await fetch("https://newhandy-4b950124bf06.herokuapp.com/create-event/", {
+                    method: "POST",
+                    body: formData,
+                    headers: {
+                        "Authorization": "Bearer " + localStorage.getItem("access_token")
+                    }
+                });
+
+                let result = await response.json();
+                if (response.ok) {
+                    alert("Подію успішно створено!");
+                    window.location.reload();
+                } else {
+                    alert("Помилка: " + JSON.stringify(result));
+                }
+            } catch (error) {
+                console.error("Помилка при відправці:", error);
+            }
+        });
+        </script>
+    </main>
+
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-container">
+                <nav class="footer-nav">
+                    <div class="footer-logo">
+                        <div class="logo">HANDY</div>
+                    </div>
+                    <ul class="footer-menu">
+                        <li><a class="footer-link" href="/index.html">Головна</a></li>
+                        <li><a class="footer-link" href="eventList.html">Події</a></li>
+                        <li><a class="footer-link" href="/about-us.html">Про нас</a></li>
+                        <li><a class="footer-link" href="instruction.html">Інструкція з використання</a></li>
+                    </ul>
+                </nav>
+                <address class="footer-address">
+                    <ul class="adsress-list">
+                        <li><a class="address-link" href="tel:+380960000007">+ 38 (096) 000 00 07</a></li>
+                        <li><a class="address-link" href="mailto:handysupport@gmail.com">handysupport@gmail.com</a></li>
+                    </ul>
+                    <div class="address-info">
+                        <a class="address-link" href="" target="_blank">Політика конфійдеційності</a>
+                    <p class="address-copyright">
+                        &copy; Дані захищено
+                    </p>
+                    </div>
+                </address>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    const accessToken = localStorage.getItem('access_token');
+   
+
+    if (accessToken) {
+        document.getElementById('register-btn').style.display = 'none';
+        document.getElementById('login-btn').style.display = 'none';
+        document.getElementById('logout-btn').style.display = 'inline-block';
+        document.getElementById('profile-btn').style.display = 'inline-block';
+        document.getElementById('modal-btn-open').style.display = 'inline-block';
+        
+    }
+
+    
+});
+
+document.getElementById('logout-btn').addEventListener('click', function () {
+    event.preventDefault();
+    
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('refresh_token');
+    
+    location.reload();
+
+    
+    
+});
+
+document.getElementById('profile-btn').addEventListener('click', function() {
+    window.location.href = 'profile.html';
+});
+
+    </script>
+</body>
+</html>

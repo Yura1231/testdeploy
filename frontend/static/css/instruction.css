@@ -1,0 +1,264 @@
+@font-face {
+    font-display: swap;
+    font-family: 'Play';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/play-v19-latin-regular.woff2') format('woff2');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Play';
+    font-style: normal;
+    font-weight: 700;
+    src: url('../fonts/play-v19-latin-700.woff2') format('woff2');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/poppins-v22-latin-regular.woff2') format('woff2');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    src: url('../fonts/poppins-v22-latin-600.woff2') format('woff2');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --color-toxic: #3dc23d;
+}
+
+body {
+    font-family: 'Play', sans-serif;
+    background-color: #fff;
+    color: #000;
+    height: 100vh;
+    font-weight: 400;
+}
+
+h1 {
+    font-family: 'Play', sans-serif;
+    font-size: 36px;
+    font-weight: bold;
+    color: #32CD32;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+h2 {
+    font-size: 28px;
+    color: #32CD32;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+p {
+    font-size: 16px;
+    margin-bottom: 20px;
+    line-height: 1.8;
+    color: #333;
+}
+
+ul {
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+li {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+strong {
+    font-weight: bold;
+    color: #32CD32;
+}
+
+.content-container {
+    max-width: 95%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 18px;
+}
+
+.container {
+    max-width: 1288px;
+    margin: 0 auto;
+    padding: 20px;
+    width: 100%;
+}
+
+.header {
+    padding: 15px;
+    padding-top: 32px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    border-bottom: 2px solid #ddd;
+    align-items: center;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.header-nav {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    gap: 40px;
+}
+
+.header-menu {
+    display: flex;
+    gap: 64px;
+    flex-grow: 1;
+    justify-content: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #32CD32;
+}
+
+.link {
+    color: black;
+    line-height: 1.5;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.link:hover {
+    color: #3dc23d;
+    font-weight: 900;
+    transform: scale(1.05);
+}
+
+nav ul {
+    list-style: none;
+    display: block;
+    gap: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+}
+
+.auth a {
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.login-link {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.register {
+    margin-bottom: 15px;
+}
+
+.p-login {
+    text-align: center;
+}
+
+.header button {
+    font-weight: bold;
+    color: #000;
+    border: none;
+}
+
+.profile-header {
+    font-size: 26px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.footer-container {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-nav, .footer-address {
+    flex-basis: 50%;
+    display: flex;
+    gap: 20px;
+}
+
+.footer-logo, .footer-menu  {
+    flex-grow: 1;
+}
+
+.footer-link {
+    color: #caf1ca;
+    line-height: 1.5;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-link:hover {
+    color: #32CD32;
+    font-weight: 1000;
+}
+
+.adsress-list, .adsress-info {
+    flex-grow: 1;
+}
+
+.address-link {
+    font-size: 16px;
+    font-weight: 300;
+    color: #caf1ca;
+    text-decoration: none;
+}
+
+.address-link:hover {
+    color: #32CD32;
+}
+
+.address-icon {
+    fill: var(--color-primary-light);
+}
+
+.address-icon:hover {
+    fill: var(--color-brand);
+}
+
+.address-copyright {
+    font-size: 14px;
+    color: #caf1ca;
+}
+
+.footer {
+    position: relative;
+    padding: 32px 0;
+    background-color: #043c05;
+}

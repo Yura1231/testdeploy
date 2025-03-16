@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In</title>
+    <link rel="stylesheet" href="../css/style.css">
+    
+</head>
+<body>
+    <div class="wrapper">
+        <form id="login-form">
+            <h2>ВХІД ДО ОСОБИСТОГО КАБІНЕТУ</h2>
+            <div class="input-field">
+                <input type="text" id="email" required>
+                <label>Вкажіть електронну пошту</label>
+            </div>
+            <div class="input-field">
+                <input type="password" id="password" required>
+                <label>Вкажіть пароль</label>
+            </div>
+            <button type="submit">Увійти</button>
+            
+            <div class="register">
+                <p>Не маєте профілю? <a href="register-form.html">Зареєструйтесь</a></p>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('login-form').addEventListener('submit', async function(event) {
+            event.preventDefault(); 
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            const response = await fetch('https://newhandy-4b950124bf06.herokuapp.com/login/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email: email, password: password })
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                localStorage.setItem('access_token', data.access_token);
+                localStorage.setItem('refresh_token', data.refresh_token);  
+
+                alert('Успішний вхід!');
+                window.location.href = 'index.html'; 
+            } else {
+                alert(data.error || 'Помилка входу');
+            }
+        });
+
+        
+    </script>
+</body>
+</html>

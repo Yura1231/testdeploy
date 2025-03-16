@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список подій</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/eventStyle.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <div class="header-container">
+                <div class="logo">HANDY</div>
+                <nav class="header-nav">
+                    <ul class="header-menu">
+                        <li><a class="link" href="/index.html">Головна</a></li>
+                        <li><a class="link" href="eventList.html">Події</a></li>
+                        <li><a class="link" href="/about-us.html">Про нас</a></li>
+                        <li><a class="link" href="/instruction.html">Інструкція з використання</a></li>
+                    </ul>
+                </nav>
+                <div class="auth">
+                    <a class= "link" href="login.html" id="login-btn"  >Увійти</a> | <a class= "link" href="/register-form.html" id="register-btn">Зареєструватись</a> 
+                    <a class="link" id="logout-btn" href="#" style="display: none;">Вихід</a>
+                    <a class= "link" href="userProfile.html" id="profile-btn" style="display: none;" >Профіль </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="events-container">
+            <h1>Події</h1>
+            <select id="category-filter">
+                <option value="all">Усі категорії</option>
+                <option value="donate">Донат</option>
+                <option value="ecology">Екологія</option>
+                <option value="military">Військове</option>
+                <option value="help">Допомога</option>
+                <option value="education">Освіта</option>
+                <option value="medicine">Медицина</option>
+                <option value="community">Громадська діяльність</option>
+                <option value="social">Соціальні ініціативи</option>
+                <option value="emergency">Надзвичайні ситуації</option>
+                <option value="mental-health">Психологічна підтримка</option>
+                <option value="reconstruction">Відновлення інфраструктури</option>
+            </select>
+
+            <p id="default-message">Незабаром будуть відображатися події, створені користувачами.</p>
+            
+            <div id="events-list" class="events-list">
+                <!-- Події будуть додаватися тут динамічно -->
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-container">
+                <nav class="footer-nav">
+                    <div class="footer-logo">
+                        <div class="logo">HANDY</div>
+                    </div>
+                    <ul class="footer-menu">
+                        <li><a class="footer-link" href="/index.html">Головна</a></li>
+                        <li><a class="footer-link" href="eventList.html">Події</a></li>
+                        <li><a class="footer-link" href="/about-us.html">Про нас</a></li>
+                        <li><a class="footer-link" href="instruction.html">Інструкція з використання</a></li>
+                    </ul>
+                </nav>
+                <address class="footer-address">
+                    <ul class="address-list">
+                        <li><a class="address-link" href="tel:+380960000007">+ 38 (096) 000 00 07</a></li>
+                        <li><a class="address-link" href="mailto:handysupport@gmail.com">handysupport@gmail.com</a></li>
+                    </ul>
+                    <div class="address-info">
+                        <a class="address-link" href="" target="_blank">Політика конфіденційності</a>
+                        <p class="address-copyright">
+                            &copy; Дані захищено
+                        </p>
+                    </div>
+                </address>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="../js/event.js"></script>
+    <script src="../js/auth.js"></script>
+</body>
+</html>

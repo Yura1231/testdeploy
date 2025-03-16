@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список подій</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <div class="header-container">
+                <div class="logo">HANDY</div>
+            <nav class="header-nav">
+                    <ul class="header-menu">
+                        <li><a class= "link" href="/index.html">Головна</a></li>
+                        <li><a class= "link" href="test.html">Події</a></li>
+                        <li><a class= "link" href="/about-us.html">Про нас</a></li>
+                        <li><a class= "link" href="/instruction.html">Інструкція з використання</a></li>
+                    </ul>
+                </nav>
+                <div class="auth">
+                    <a class= "link" href="/login.html">Увійти</a> | <a class= "link" href="/register-form.html">Зареєструватись</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="events-container">
+            <h1>Події</h1>
+            <select id="category-filter">
+                <option value="all">Усі категорії</option>
+                <option value="donate">Донат</option>
+                <option value="ecology">Екологія</option>
+                <option value="military">Військове</option>
+                <option value="help">Допомога</option>
+                <option value="education">Освіта</option>
+                <option value="medicine">Медицина</option>
+                <option value="community">Громадська діяльність</option>
+                <option value="social">Соціальні ініціативи</option>
+                <option value="emergency">Надзвичайні ситуації</option>
+                <option value="mental-health">Психологічна підтримка</option>
+                <option value="reconstruction">Відновлення інфраструктури</option>
+            </select>
+            <div id="events-list" class="events-list">
+                <!-- Події будуть додаватися тут динамічно -->
+            </div>
+        </section>
+    
+    
+        <script>
+           document.addEventListener('DOMContentLoaded', async () => {
+    const eventsList = document.getElementById('events-list');
+    const categoryFilter = document.getElementById('category-filter');
+
+    async function loadEvents(category = "all") {
+        try {
+            let url = "https://newhandy-4b950124bf06.herokuapp.com/api/events/";
+            if (category !== "all") {
+                url += `?category=${category}`;
+            }
+
+            let response = await fetch(url, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+
+            if (!response.ok) {
+                throw new Error("Не вдалося завантажити події");
+            }
+
+            let events = await response.json();
+
+            if (events.length === 0) {
+                eventsList.innerHTML = `<p>Наразі немає доступних подій.</p>`;
+                return;
+            }
+
+            let eventCards = '';
+            for (const event of events) {
+                const isRegistered = await checkRegistration(event.id);
+
+                eventCards += `
+                    <div class="event-card">
+                        <img src="https://newhandy-4b950124bf06.herokuapp.com${event.image}" alt="${event.title}">
+                        <div class="event-content">
+                            <h2>${event.title}</h2>
+                            <p><strong>Категорія:</strong> ${event.category}</p>
+                            <p><strong>Місце:</strong> ${event.location_full}</p>
+                            <p><strong>Час:</strong> ${event.start_time} - ${event.end_time}</p>
+                            <p><strong>Телефон:</strong> ${event.phone_number}</p>
+                            <p><strong>Email:</strong> ${event.email}</p>
+                            <p><strong>Опис:</strong> ${event.description}</p>
+                            <button class="subscribe-btn" data-event-id="${event.id}">
+                                ${isRegistered ? "Відписатися" : "Підписатися"}
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }
+
+            eventsList.innerHTML = eventCards;
+        } catch (error) {
+            console.error(error);
+            eventsList.innerHTML = `<p>Сталася помилка при завантаженні подій.</p>`;
+        }
+    }
+
+    // Викликаємо завантаження подій при завантаженні сторінки
+    await loadEvents();
+
+    // Додаємо обробник для фільтрації подій за категоріями
+    categoryFilter.addEventListener("change", async () => {
+        const selectedCategory = categoryFilter.value;
+        await loadEvents(selectedCategory);
+    });
+
+    eventsList.addEventListener("click", async (event) => {
+        if (event.target.classList.contains("subscribe-btn")) {
+            const button = event.target;
+            const eventId = button.dataset.eventId;
+            const token = localStorage.getItem("access_token");
+
+            if (!token) {
+                alert("Будь ласка, увійдіть у систему, щоб підписатися.");
+                return;
+            }
+
+            const isSubscribed = button.innerText === "Відписатися";
+
+            if (isSubscribed) {
+                await unsubscribe(eventId);
+                button.innerText = "Підписатися";
+            } else {
+                await subscribe(eventId);
+                button.innerText = "Відписатися";
+            }
+        }
+    });
+
+    // Функції для підписки/відписки
+    async function checkRegistration(eventId) {
+        const token = localStorage.getItem("access_token");
+        if (!token) return false;
+
+        try {
+            const response = await fetch(`https://newhandy-4b950124bf06.herokuapp.com/events/${eventId}/check-registration/`, {
+                method: "GET",
+                headers: {
+                    "Authorization": "Bearer " + token,
+                    "Content-Type": "application/json"
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error("Не вдалося отримати статус реєстрації.");
+            }
+
+            const data = await response.json();
+            return data.registered;
+        } catch (error) {
+            console.error(error);
+            return false;
+        }
+    }
+
+    async function subscribe(eventId) {
+        const token = localStorage.getItem("access_token");
+        if (!token) {
+            alert("Будь ласка, увійдіть у систему.");
+            return;
+        }
+
+        try {
+            const response = await fetch(`https://newhandy-4b950124bf06.herokuapp.com/events/${eventId}/`, {
+                method: "POST",
+                headers: {
+                    "Authorization": "Bearer " + token,
+                    "Content-Type": "application/json"
+                }
+            });
+
+            const data = await response.json();
+            console.log(data.message);
+        } catch (error) {
+            console.error("Помилка підписки:", error);
+        }
+    }
+
+    async function unsubscribe(eventId) {
+        const token = localStorage.getItem("access_token");
+        if (!token) {
+            alert("Будь ласка, увійдіть у систему.");
+            return;
+        }
+
+        try {
+            const response = await fetch(`https://newhandy-4b950124bf06.herokuapp.com/unsubscribe/${eventId}/`, {
+                method: "POST",
+                headers: {
+                    "Authorization": "Bearer " + token,
+                    "Content-Type": "application/json"
+                }
+            });
+
+            const data = await response.json();
+            console.log(data.message);
+        } catch (error) {
+            console.error("Помилка відписки:", error);
+        }
+    }
+});
+
+        </script>
+        
+    </main>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-container">
+            <nav class="footer-nav">
+                <div class="footer-logo">
+                    <div class="logo">HANDY</div>
+                </div>
+                <ul class="footer-menu">
+                    <li><a class="footer-link" href="/index.html">Головна</a></li>
+                    <li><a class="footer-link" href="#">Події</a></li>
+                    <li><a class="footer-link" href="/about-us.html">Про нас</a></li>
+                    <li><a class="footer-link" href="instruction.html">Інструкція з використання</a></li>
+                </ul>
+            </nav>
+            <address class="footer-address">
+                <ul class="adsress-list">
+                    <li><a class="address-link" href="tel:+380960000007">+ 38 (096) 000 00 07</a></li>
+                    <li><a class="address-link" href="mailto:handysupport@gmail.com">handysupport@gmail.com</a></li>
+                </ul>
+                <div class="address-info">
+                    <a class="address-link" href="" target="_blank">Політика конфійдеційності</a>
+                <p class="address-copyright">
+                    &copy; Дані захищено
+                </p>
+                </div>
+            </address>
+        </div>
+    </div>
+</footer>
+
+<style>
+    .subscribe-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.subscribe-btn:hover {
+    background-color: #0056b3;
+}
+</style>
+</body>
+</html>
